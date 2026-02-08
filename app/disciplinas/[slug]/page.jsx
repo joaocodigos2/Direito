@@ -119,21 +119,6 @@ export default function DisciplinaDetalhePage({ params }) {
             </div>
           </div>
 
-          {details?.planoAulas?.length ? (
-            <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
-              <h3 className="text-lg font-semibold text-white">Plano de aulas</h3>
-              <div className="mt-4 grid gap-4 text-sm text-slate-300">
-                {details.planoAulas.map((item) => (
-                  <div key={`${item.date}-${item.content}`} className="border-b border-slate-800 pb-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{item.date}</p>
-                    <p className="mt-2 text-sm font-semibold text-slate-200">{item.content}</p>
-                    <p className="mt-1 text-sm text-slate-300">{item.atividades}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
               <h3 className="text-lg font-semibold text-white">Bibliografia básica</h3>
@@ -177,20 +162,6 @@ export default function DisciplinaDetalhePage({ params }) {
             <h3 className="text-lg font-semibold text-white">Observações</h3>
             <p className="mt-3 text-sm text-slate-300">{details?.observacoes ?? "Observações em atualização."}</p>
           </div>
-
-          {details?.interdisciplinaridade ? (
-            <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
-              <h3 className="text-lg font-semibold text-white">Interdisciplinaridade</h3>
-              <p className="mt-3 text-sm text-slate-300">{details.interdisciplinaridade}</p>
-            </div>
-          ) : null}
-
-          {details?.filosofiaInstitucional ? (
-            <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-950/60 p-6">
-              <h3 className="text-lg font-semibold text-white">Integração com a filosofia institucional</h3>
-              <p className="mt-3 text-sm text-slate-300">{details.filosofiaInstitucional}</p>
-            </div>
-          ) : null}
         </div>
       </div>
     </main>
