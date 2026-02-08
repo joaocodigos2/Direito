@@ -1,7 +1,111 @@
-import Link from "next/link";
-import { disciplines } from "./data/courseData";
+"use client";
+
+const scheduleByDay = {
+  segunda: [
+    { time: "19:00–19:45", subject: "Direito Civil: Pessoas, Bens e Fatos" },
+    { time: "19:45–20:30", subject: "Direito Civil: Pessoas, Bens e Fatos" },
+    { time: "20:45–21:30", subject: "Direito Civil: Pessoas, Bens e Fatos" },
+    { time: "21:30–22:15", subject: "Ambientação Jurídica" },
+    { time: "22:15–23:00", subject: "Ambientação Jurídica" }
+  ],
+  terca: [
+    { time: "19:00–19:45", subject: "Criminologia e Escolas Penais" },
+    { time: "19:45–20:30", subject: "Criminologia e Escolas Penais" },
+    { time: "20:45–21:30", subject: "Teoria Geral do Direito" },
+    { time: "21:30–22:15", subject: "Teoria Geral do Direito" },
+    { time: "22:15–23:00", subject: "Teoria Geral do Direito" }
+  ],
+  quarta: [
+    { time: "19:00–19:45", subject: "Teoria do Estado e da Constituição" },
+    { time: "19:45–20:30", subject: "Teoria do Estado e da Constituição" },
+    { time: "20:45–21:30", subject: "Teoria do Estado e da Constituição" },
+    { time: "21:30–22:15", subject: "Cosmovisão Bíblico-Cristã" },
+    { time: "22:15–23:00", subject: "Cosmovisão Bíblico-Cristã" }
+  ],
+  quinta: [{ time: "20:45–21:30", subject: "Direito Civil: Pessoas, Bens e Fatos" }],
+  sexta: [
+    { time: "21:30–22:15", subject: "Aprendizagem na Educação Superior" },
+    { time: "22:15–23:00", subject: "Aprendizagem na Educação Superior" }
+  ],
+  sabado: [],
+  domingo: []
+};
+
+const disciplines = [
+  {
+    name: "Criminologia",
+    teacher: "José Geraldo da Silva",
+    credits: "2 créditos",
+    focus: "Escolas penais, política criminal e análise social do crime.",
+    tags: ["teoria", "sociologia", "penal"]
+  },
+  {
+    name: "Teoria Geral do Direito",
+    teacher: "Michael Lima de Jesus",
+    credits: "3 créditos",
+    focus: "Fontes do direito, norma jurídica e interpretação.",
+    tags: ["fundamentos", "interpretação", "normas"]
+  },
+  {
+    name: "Ambientação Jurídica",
+    teacher: "Igor Emanuel de Souza Marques",
+    credits: "2 créditos",
+    focus: "Terminologia, prática acadêmica e panorama do curso.",
+    tags: ["metodologia", "introdução"]
+  },
+  {
+    name: "Teoria do Estado e da Constituição",
+    teacher: "Lelio Maximino Lellis",
+    credits: "3 créditos",
+    focus: "Formação do Estado, Constituição e organização dos poderes.",
+    tags: ["constitucional", "estado"]
+  },
+  {
+    name: "Direito Civil: Pessoas, Bens e Fatos",
+    teacher: "Andre de Carvalho Okano",
+    credits: "4 créditos",
+    focus: "Personalidade civil, bens e fatos jurídicos essenciais.",
+    tags: ["civil", "pessoas", "bens"]
+  },
+  {
+    name: "Aprendizagem na Educação Superior",
+    teacher: "Everson Mückenberger / Stella de Mello Silva",
+    credits: "2 créditos",
+    focus: "Estratégias de estudo, autonomia e aprendizagem ativa.",
+    tags: ["aprendizagem", "metodologia"]
+  }
+];
+
+const dayLabels = {
+  0: "domingo",
+  1: "segunda",
+  2: "terca",
+  3: "quarta",
+  4: "quinta",
+  5: "sexta",
+  6: "sabado"
+};
+
+const dayDisplay = {
+  domingo: "Domingo",
+  segunda: "Segunda-feira",
+  terca: "Terça-feira",
+  quarta: "Quarta-feira",
+  quinta: "Quinta-feira",
+  sexta: "Sexta-feira",
+  sabado: "Sábado"
+};
 
 export default function Home() {
+  const today = new Date();
+  const dayKey = dayLabels[today.getDay()];
+  const schedule = scheduleByDay[dayKey];
+  const formattedDate = today.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+
   return (
     <main className="min-h-screen">
       <section className="bg-slate-950 bg-[radial-gradient(circle_at_top,_rgba(124,92,255,0.25),_transparent_55%)] py-20">
@@ -19,13 +123,13 @@ export default function Home() {
           <div className="flex flex-wrap gap-4">
             <a
               className="rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:-translate-y-0.5"
-              href="/cronograma"
+              href="#cronograma"
             >
               Ver aulas de hoje
             </a>
             <a
               className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-white transition hover:border-slate-500"
-              href="/disciplinas"
+              href="#disciplinas"
             >
               Ir para disciplinas
             </a>
@@ -33,40 +137,37 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section id="cronograma" className="py-16">
         <div className="mx-auto w-[90%] max-w-6xl">
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 px-6 py-6">
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Cronograma</p>
-              <h2 className="mt-2 text-2xl font-semibold text-white">
-                Veja o cronograma do dia e planeje seus estudos.
-              </h2>
-              <p className="mt-3 text-sm text-slate-400">
-                A página de cronograma mostra automaticamente as aulas do dia atual e a visão
-                completa da semana.
-              </p>
-              <Link
-                className="mt-6 inline-flex rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white"
-                href="/cronograma"
-              >
-                Abrir cronograma
-              </Link>
+          <div className="flex flex-wrap items-center justify-between gap-6">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Hoje</p>
+              <h2 className="mt-2 text-3xl font-semibold text-white">Aulas do dia</h2>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 px-6 py-6">
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Glossário</p>
-              <h2 className="mt-2 text-2xl font-semibold text-white">
-                Centralize conceitos e referências jurídicas.
-              </h2>
-              <p className="mt-3 text-sm text-slate-400">
-                Mantenha definições, artigos e links essenciais para consulta rápida em aula.
-              </p>
-              <Link
-                className="mt-6 inline-flex rounded-full border border-slate-700 px-5 py-2 text-sm font-semibold text-white"
-                href="/glossario"
-              >
-                Ir para o glossário
-              </Link>
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 px-6 py-4 text-sm font-semibold text-slate-100">
+              {dayDisplay[dayKey]} · {formattedDate}
             </div>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {schedule.length === 0 ? (
+              <div className="rounded-2xl border border-brand-500/30 bg-slate-900 px-6 py-6">
+                <h3 className="text-lg font-semibold text-white">Sem aulas regulares hoje</h3>
+                <p className="mt-2 text-sm text-slate-400">
+                  Aproveite para revisar, organizar resumos e atualizar o glossário.
+                </p>
+              </div>
+            ) : (
+              schedule.map((item) => (
+                <div
+                  key={`${item.subject}-${item.time}`}
+                  className="rounded-2xl border border-brand-500/20 bg-slate-900 px-6 py-6 shadow-lg shadow-black/20"
+                >
+                  <h3 className="text-lg font-semibold text-white">{item.subject}</h3>
+                  <p className="mt-2 text-sm text-slate-400">{item.time}</p>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -95,7 +196,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section id="disciplinas" className="py-16">
         <div className="mx-auto w-[90%] max-w-6xl">
           <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Disciplinas</p>
           <h2 className="mt-2 text-3xl font-semibold text-white">Páginas específicas</h2>
@@ -120,10 +221,30 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <div className="mt-8">
-            <Link className="text-sm font-semibold text-brand-200 hover:text-white" href="/disciplinas">
-              Ver todas as disciplinas →
-            </Link>
+        </div>
+      </section>
+
+      <section className="section-light py-16">
+        <div className="mx-auto grid w-[90%] max-w-6xl gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/40">
+            <h3 className="text-lg font-semibold">Glossário rápido</h3>
+            <p className="mt-3 text-sm text-slate-600">
+              Centralize conceitos-chave, artigos e princípios para consulta rápida.
+            </p>
+            <button className="mt-6 rounded-full border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-700">
+              Adicionar termos
+            </button>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/40">
+            <h3 className="text-lg font-semibold">Atalhos úteis</h3>
+            <ul className="mt-4 grid gap-2 text-sm text-slate-600">
+              <li>Constituição Federal de 1988</li>
+              <li>Vade Mecum digital</li>
+              <li>Jurisprudência essencial</li>
+            </ul>
+            <button className="mt-6 rounded-full border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-700">
+              Gerenciar links
+            </button>
           </div>
         </div>
       </section>
