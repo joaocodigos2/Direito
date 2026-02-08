@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { disciplines } from "../data/courseData";
 
 export default function DisciplinasPage() {
@@ -29,9 +31,12 @@ export default function DisciplinasPage() {
                   </span>
                 ))}
               </div>
-              <button className="mt-6 rounded-full border border-slate-700 px-4 py-2 text-xs font-semibold text-slate-200">
+              <Link
+                className="mt-6 inline-flex rounded-full border border-slate-700 px-4 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
+                href={`/disciplinas/${discipline.slug}`}
+              >
                 Abrir página da disciplina
-              </button>
+              </Link>
             </article>
           ))}
         </div>
