@@ -49,6 +49,9 @@ export default function RootLayout({ children }) {
                 <Link className="transition hover:text-white" href="/cronograma">
                   Cronograma
                 </Link>
+                <Link className="transition hover:text-white" href="/materiais">
+                  Materiais
+                </Link>
                 <Link className="transition hover:text-white" href="/glossario">
                   Glossário
                 </Link>

@@ -59,15 +59,15 @@ export default function CronogramaPage() {
     <main className="min-h-screen">
       <section className="bg-slate-950 py-16">
         <div className="mx-auto w-[90%] max-w-6xl">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
+          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div className="max-w-2xl">
               <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Conteúdos do semestre</p>
               <h2 className="mt-2 text-3xl font-semibold text-white">Cronograma por disciplina</h2>
               <p className="mt-2 text-sm text-slate-400">
                 Veja o conteúdo planejado em sala, EAD e espaços diversificados de cada matéria.
               </p>
             </div>
-            <div className="wc-search" style={{ position: "static" }}>
+            <div className="wc-search w-full md:w-[340px] lg:w-[380px]">
               <div className="wc-search-box">
                 <svg
                   className="wc-search-icon"
@@ -92,7 +92,7 @@ export default function CronogramaPage() {
               <div className="wc-search-nav" role="status" aria-live="polite">
                 <span className="wc-search-count">{`${rows.length}/${disciplines.length}`}</span>
               </div>
-              <div className="mt-2 flex gap-2">
+              <div className="mt-2 flex flex-wrap gap-2">
                 <a
                   href="/cronograma"
                   className="rounded-full border border-slate-700 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"

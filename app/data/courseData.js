@@ -88,6 +88,8 @@ export const disciplines = [
 export const disciplineDetails = {
   criminologia: {
     title: "Criminologia e Escolas Penais",
+    downloadUrl: "/Planos%20de%20Estudo/Plano%20de%20Estudo%20-%20Criminologia%20e%20Escolas%20Penais.pdf",
+    cronogramaDownloadUrl: "/Cronogramas/Cronograma%20-%20Crimonologia%20Escolas%20Penais.pdf",
     campus: "UNASP EC",
     modalidade: "Presencial",
     curso: "Direito",
@@ -379,6 +381,8 @@ export const disciplineDetails = {
   },
   "teoria-geral-do-direito": {
     title: "Teoria Geral do Direito",
+    downloadUrl: "/Planos%20de%20Estudo/Plano%20de%20Estudo%20-%20Teoria%20Geral%20do%20Direito.pdf",
+    cronogramaDownloadUrl: "/Cronogramas/Cronograma%20-%20Teoria%20Geral%20do%20Direito.pdf",
     campus: "UNASP EC",
     modalidade: "Presencial",
     curso: "Direito",
@@ -673,6 +677,8 @@ export const disciplineDetails = {
   },
   "ambientacao-juridica": {
     title: "Ambientação Jurídica",
+    downloadUrl: "/Planos%20de%20Estudo/Plano%20de%20Estudo%20-%20Ambientação%20Jurídica.pdf",
+    cronogramaDownloadUrl: "/Cronogramas/Cronograma%20-%20Ambientação%20Jurídica.pdf",
     campus: "UNASP EC",
     modalidade: "Presencial",
     curso: "Direito",
@@ -956,6 +962,8 @@ export const disciplineDetails = {
   },
   "teoria-do-estado-e-da-constituicao": {
     title: "Teoria do Estado e da Constituição",
+    downloadUrl: "/Planos%20de%20Estudo/Plano%20de%20Estudo%20-%20Teoria%20do%20Estado%20e%20da%20Constituição.pdf",
+    cronogramaDownloadUrl: "/Cronogramas/Cronograma%20-%20Teoria%20do%20Estado%20e%20da%20Constituição.pdf",
     campus: "UNASP EC",
     modalidade: "Presencial",
     curso: "Direito",
@@ -1240,6 +1248,9 @@ export const disciplineDetails = {
   },
   "direito-civil-pessoas-bens-e-fatos": {
     title: "Direito Civil: Pessoas, Bens e Fatos - Split (Parte em Web Class Síncrona)",
+    downloadUrl: "/Planos%20de%20Estudo/Plano%20de%20Estudo%20-%20Direito%20Civil%20Pessoas,%20Bens%20e%20Fatos.pdf",
+    cronogramaDownloadUrl:
+      "/Cronogramas/Cronograma%20-%20Direito%20Civil%20Pessoas,%20Bens%20e%20Fatos%20-%20Split%20Parte%20em%20Web%20Class%20Síncrona.pdf",
     campus: "UNASP EC",
     modalidade: "Split (Parte em Web Class Síncrona)",
     curso: "Direito",
@@ -1703,6 +1714,8 @@ export const disciplineDetails = {
   },
   "aprendizagem-na-educacao-superior": {
     title: "Aprendizagem na Educação Superior",
+    downloadUrl: "/Planos%20de%20Estudo/Plano%20de%20Estudo%20-%20Aprendizagem%20na%20Educação%20Superior.pdf",
+    cronogramaDownloadUrl: "/Cronogramas/Cronograma%20-%20Aprendizagem%20no%20Ensino%20Superior.pdf",
     campus: "UNASP EC",
     modalidade: "Mega Class",
     curso: "Direito",

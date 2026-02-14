@@ -9,6 +9,7 @@ export default function CronogramaDisciplina({ params }) {
   const { slug } = params;
   const detail = disciplineDetails[slug];
   const meta = disciplines.find((d) => d.slug === slug);
+  const downloadHref = detail?.cronogramaDownloadUrl ?? detail?.downloadUrl;
 
   const fold = (value = "") =>
     value
@@ -78,59 +79,85 @@ export default function CronogramaDisciplina({ params }) {
   return (
     <main className="min-h-screen bg-slate-950 py-16">
       <div className="mx-auto w-[90%] max-w-5xl">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Conteúdos do semestre</p>
-            <h1 className="mt-2 text-3xl font-semibold text-white">{detail.title}</h1>
-            <p className="text-sm text-slate-400">
-              {detail.professor}
-              {detail.curso ? ` · ${detail.curso}` : ""}
-              {detail.yearSemester ? ` · ${detail.yearSemester}` : ""}
-            </p>
-          </div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-200">
-            <Link
-              className="rounded-full border border-slate-700 px-4 py-2 transition hover:border-slate-500 hover:text-white"
-              href="/cronograma"
-            >
-              Voltar
-            </Link>
-            <Link
-              className="rounded-full border border-slate-700 px-4 py-2 transition hover:border-slate-500 hover:text-white"
-              href={`/disciplinas/${slug}`}
-            >
-              Página da disciplina
-            </Link>
-          </div>
-        </div>
-
-        <div className="mt-6 flex justify-end">
-          <div className="wc-search" style={{ position: "static" }}>
-            <div className="wc-search-box">
-              <svg
-                className="wc-search-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-                aria-hidden
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Conteúdos do semestre</p>
+              <h1 className="mt-2 text-3xl font-semibold text-white">{detail.title}</h1>
+              <p className="text-sm text-slate-400">
+                {detail.professor}
+                {detail.curso ? ` · ${detail.curso}` : ""}
+                {detail.yearSemester ? ` · ${detail.yearSemester}` : ""}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-200">
+              <Link
+                className="rounded-full border border-slate-700 px-4 py-2 transition hover:border-slate-500 hover:text-white"
+                href="/cronograma"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" />
-              </svg>
-              <input
-                aria-label="Buscar no cronograma"
-                type="search"
-                placeholder="Buscar no cronograma"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="wc-search-input"
-              />
+                Voltar
+              </Link>
+              <Link
+                className="rounded-full border border-slate-700 px-4 py-2 transition hover:border-slate-500 hover:text-white"
+                href={`/disciplinas/${slug}`}
+              >
+                Página da disciplina
+              </Link>
+              <a
+                className={`dl-button ${!downloadHref ? "dl-button--disabled" : ""}`}
+                href={downloadHref ?? "#"}
+                {...(downloadHref ? { target: "_blank", rel: "noreferrer" } : { "aria-disabled": true })}
+              >
+                <svg
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  height="28"
+                  width="28"
+                  className="dl-button__icon"
+                  aria-hidden
+                >
+                  <path fill="none" d="M0 0h24v24H0z" stroke="none" />
+                  <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                  <path d="M7 11l5 5l5 -5" />
+                  <path d="M12 4l0 12" />
+                </svg>
+                <span className="dl-button__text">Download</span>
+              </a>
             </div>
-            <div className="wc-search-nav" role="status" aria-live="polite">
-              <span className="wc-search-count">{`${entries.length}/${detail.conteudos.length}`}</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="wc-search flex-1" style={{ position: "static" }}>
+              <div className="wc-search-box">
+                <svg
+                  className="wc-search-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  aria-hidden
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" />
+                </svg>
+                <input
+                  aria-label="Buscar no cronograma"
+                  type="search"
+                  placeholder="Buscar no cronograma"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="wc-search-input"
+                />
+              </div>
+              <div className="wc-search-nav" role="status" aria-live="polite">
+                <span className="wc-search-count">{`${entries.length}/${detail.conteudos.length}`}</span>
+              </div>
             </div>
-            <div className="mt-2 flex gap-2 text-xs font-semibold text-slate-200">
+            <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-200">
               <button
                 type="button"
                 onClick={() => setQuery("")}

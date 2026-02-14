@@ -121,7 +121,7 @@ export default function Home() {
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
                 <a
-                  className="rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-red-500/30 transition hover:-translate-y-0.5"
+                  className="rounded-full bg-gradient-to-r from-rose-500 to-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/30 transition hover:-translate-y-0.5 hover:brightness-105"
                   href="#cronograma"
                 >
                   Ver aulas de hoje

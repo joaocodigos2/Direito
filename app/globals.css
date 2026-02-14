@@ -274,7 +274,7 @@ body {
 /* --- Hero schedule card --- */
 :root {
   --wc-card-bg: #0f172a;
-  --wc-card-accent: #ef4444;
+  --wc-card-accent: #f43f5e;
   --wc-card-surface: #1b2536;
   --wc-card-text: #f8fafc;
   --wc-card-subtext: #cbd5e1;
@@ -284,8 +284,8 @@ body {
 
 [data-theme="light"] {
   --wc-card-bg: #fff7f7;
-  --wc-card-accent: #dc2626;
-  --wc-card-surface: #ffe4e6;
+  --wc-card-accent: #f97316;
+  --wc-card-surface: #ffe9e3;
   --wc-card-text: #111827;
   --wc-card-subtext: #374151;
   --wc-search-hit: #dc2626;
@@ -319,7 +319,7 @@ body {
 .wc-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.55), rgba(37, 99, 235, 0.35));
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.55), rgba(249, 115, 22, 0.35));
   overflow: hidden;
 }
 
@@ -462,12 +462,11 @@ body {
 
 /* --- Disciplina search bar --- */
 .wc-search {
-  position: absolute;
-  top: 14px;
-  right: 14px;
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
   align-items: center;
-  gap: 8px;
 }
 
 .wc-search-box {
@@ -479,6 +478,7 @@ body {
   border: 1px solid var(--wc-search-border, #334155);
   background: var(--wc-search-bg, rgba(15, 23, 42, 0.7));
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  flex: 1 1 240px;
 }
 
 .wc-search-icon {
@@ -488,7 +488,8 @@ body {
 }
 
 .wc-search-input {
-  width: 150px;
+  width: 100%;
+  min-width: 0;
   background: transparent;
   color: var(--wc-search-text, #f8fafc);
   font-size: 13px;
@@ -536,6 +537,48 @@ body {
 .wc-search-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+/* Download chip */
+.dl-button {
+  line-height: 1;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.75em 1em;
+  padding-right: 1.25em;
+  color: #fff;
+  border: 1px solid transparent;
+  font-weight: 700;
+  border-radius: 2em;
+  font-size: 1rem;
+  box-shadow: 0 0.7em 1.5em -0.5em hsla(249, 62%, 51%, 0.745);
+  transition: transform 0.3s, border-color 0.2s ease;
+  background: linear-gradient(90deg, rgba(77, 54, 208, 1) 0%, rgba(132, 116, 254, 1) 100%);
+  text-decoration: none;
+}
+
+.dl-button__icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.dl-button:hover {
+  border-color: #f4f5f2;
+}
+
+.dl-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 0.5em 1.5em -0.5em hsla(249, 62%, 51%, 0.745);
+}
+
+.dl-button--disabled,
+.dl-button[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .wc-search-hit {

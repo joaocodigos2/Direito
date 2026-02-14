@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import { disciplines } from "../data/courseData";
 
-export default function DisciplinasPage() {
+export default function MateriaisPage() {
   const fold = (value = "") =>
     value
       .normalize("NFD")
@@ -56,10 +56,11 @@ export default function DisciplinasPage() {
       <div className="mx-auto w-[90%] max-w-6xl">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Disciplinas</p>
-            <h1 className="mt-2 text-3xl font-semibold text-white">Todas as disciplinas</h1>
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Materiais</p>
+            <h1 className="mt-2 text-3xl font-semibold text-white">Materiais e atividades</h1>
             <p className="mt-3 max-w-2xl text-sm text-slate-400">
-              Encontre a matéria que precisa e acesse plano de ensino, leituras, resumos e materiais em um só lugar.
+              Espaço para links, PDFs, slides e atividades de cada disciplina. Assim que os professores enviarem,
+              vamos disponibilizar aqui.
             </p>
           </div>
           <div className="wc-search w-full md:w-[340px] lg:w-[380px]">
@@ -76,7 +77,7 @@ export default function DisciplinasPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" />
               </svg>
               <input
-                aria-label="Buscar disciplina"
+                aria-label="Buscar material por disciplina"
                 type="search"
                 placeholder="Buscar disciplina"
                 value={query}
@@ -89,10 +90,10 @@ export default function DisciplinasPage() {
             </div>
             <div className="mt-2 flex flex-wrap gap-2">
               <Link
-                href="/disciplinas"
+                href="/materiais"
                 className="rounded-full border border-slate-700 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
               >
-                Ver todas
+                Ver todos
               </Link>
               <Link
                 href="/cronograma"
@@ -106,7 +107,7 @@ export default function DisciplinasPage() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {filtered.map((discipline) => (
-            <article key={discipline.name} className="rounded-2xl border border-slate-800 bg-slate-900 px-6 py-6">
+            <article key={discipline.slug} className="rounded-2xl border border-slate-800 bg-slate-900 px-6 py-6 shadow-lg shadow-black/20">
               <h3 className="text-lg font-semibold text-white">{highlight(discipline.name)}</h3>
               <p className="mt-2 text-sm text-slate-400">{highlight(discipline.focus)}</p>
               <p className="mt-4 text-sm text-slate-200">
@@ -115,11 +116,42 @@ export default function DisciplinasPage() {
               <p className="text-sm text-slate-200">
                 <strong>Carga:</strong> {highlight(discipline.credits)}
               </p>
+              {discipline.slug === "aprendizagem-na-educacao-superior" && (
+                <p className="mt-1 text-xs text-slate-400">Inclui Video aulas e MegaClass.</p>
+              )}
+              <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-200">
+                <Link
+                  href={`/materiais/ebooks/${discipline.slug}`}
+                  className="rounded-full border border-slate-700 px-3 py-2 transition hover:border-slate-500 hover:text-white"
+                >
+                  Ebooks
+                </Link>
+                <Link
+                  href={`/materiais/video-aulas/${discipline.slug}`}
+                  className="rounded-full border border-slate-700 px-3 py-2 transition hover:border-slate-500 hover:text-white"
+                >
+                  Video aulas
+                </Link>
+                <Link
+                  href={`/materiais/atividades/${discipline.slug}`}
+                  className="rounded-full border border-slate-700 px-3 py-2 transition hover:border-slate-500 hover:text-white"
+                >
+                  Atividades
+                </Link>
+                {discipline.slug === "aprendizagem-na-educacao-superior" && (
+                  <Link
+                    href={`/materiais/megaclass/${discipline.slug}`}
+                    className="rounded-full border border-slate-700 px-3 py-2 transition hover:border-slate-500 hover:text-white"
+                  >
+                    MegaClass
+                  </Link>
+                )}
+              </div>
               <Link
                 className="mt-6 inline-flex rounded-full border border-slate-700 px-4 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
                 href={`/disciplinas/${discipline.slug}`}
               >
-                Abrir página da disciplina
+                Ir para página da disciplina
               </Link>
             </article>
           ))}

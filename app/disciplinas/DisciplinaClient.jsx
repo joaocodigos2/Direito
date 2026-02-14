@@ -112,6 +112,7 @@ export default function DisciplinaClient({ discipline, details, complementoCols 
   }, [normalizedQueryFolded, searchableBlocks]);
 
   const [cursor, setCursor] = useState(0);
+  const downloadHref = details?.downloadUrl ?? details?.materialLink ?? null;
 
   const scrollToId = (id) => {
     const el = document.getElementById(id);
@@ -173,18 +174,9 @@ export default function DisciplinaClient({ discipline, details, complementoCols 
   }, [cursor, matches]);
 
   return (
-    <div className="relative mt-6 rounded-3xl border border-slate-800 bg-slate-900/80 p-8 shadow-2xl shadow-black/20">
-      <div
-        className="wc-search"
-        style={{
-          top: "12px",
-          right: "12px",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          gap: "10px"
-        }}
-      >
-        <div className="flex flex-wrap items-center justify-end gap-2">
+    <div className="relative mt-6 rounded-3xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6 md:p-8 shadow-2xl shadow-black/20">
+      <div className="wc-search mb-4 md:mb-2">
+        <div className="flex w-full flex-wrap items-center gap-3 justify-start md:justify-end">
           <div className="wc-search-box">
             <svg
               className="wc-search-icon"
@@ -228,7 +220,7 @@ export default function DisciplinaClient({ discipline, details, complementoCols 
             </button>
           </div>
         </div>
-        <div className="flex gap-2 text-xs font-semibold text-slate-200 justify-end">
+        <div className="flex w-full flex-wrap items-center justify-start gap-2 text-xs font-semibold text-slate-200 md:justify-end">
           <button
             type="button"
             onClick={() => scrollToId("bibliografia-basica")}
@@ -243,6 +235,30 @@ export default function DisciplinaClient({ discipline, details, complementoCols 
           >
             Ir para provas
           </button>
+          <a
+            className={`dl-button ${!downloadHref ? "dl-button--disabled" : ""}`}
+            href={downloadHref ?? "#"}
+            {...(downloadHref ? { target: "_blank", rel: "noreferrer" } : { "aria-disabled": true })}
+          >
+            <svg
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              height="32"
+              width="32"
+              className="dl-button__icon"
+              aria-hidden
+            >
+              <path fill="none" d="M0 0h24v24H0z" stroke="none" />
+              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+              <path d="M7 11l5 5l5 -5" />
+              <path d="M12 4l0 12" />
+            </svg>
+            <span className="dl-button__text">Download</span>
+          </a>
         </div>
       </div>
       <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Plano de ensino</p>
