@@ -106,7 +106,7 @@ export default function DisciplinasPage() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {filtered.map((discipline) => (
-            <article key={discipline.name} className="rounded-2xl border border-slate-800 bg-slate-900 px-6 py-6">
+            <article key={discipline.name} className="rounded-2xl border border-slate-800 bg-slate-900 px-6 py-6 shadow-lg shadow-black/15">
               <h3 className="text-lg font-semibold text-white">{highlight(discipline.name)}</h3>
               <p className="mt-2 text-sm text-slate-400">{highlight(discipline.focus)}</p>
               <p className="mt-4 text-sm text-slate-200">

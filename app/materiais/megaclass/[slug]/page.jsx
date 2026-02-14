@@ -85,7 +85,7 @@ export default function MegaClassPage({ params }) {
   return (
     <main className="min-h-screen bg-slate-950 py-16">
       <div className="mx-auto w-[90%] max-w-5xl">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Materiais · MegaClass</p>
             <h1 className="mt-2 text-3xl font-semibold text-white">{discipline.name}</h1>

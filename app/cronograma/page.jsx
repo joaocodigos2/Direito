@@ -115,7 +115,7 @@ export default function CronogramaPage() {
                 key={meta.slug}
                 className="rounded-2xl border border-slate-800 bg-slate-900 px-6 py-6 shadow-lg shadow-black/20"
               >
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <p className="text-xs uppercase tracking-[0.3em] text-slate-400">{highlight(detail.curso)}</p>
                     <h3 className="text-lg font-semibold text-white">{highlight(detail.title)}</h3>

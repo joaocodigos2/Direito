@@ -27,7 +27,7 @@ export default function AtividadesPage({ params }) {
   return (
     <main className="min-h-screen bg-slate-950 py-16">
       <div className="mx-auto w-[90%] max-w-5xl">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Materiais · Atividades</p>
             <h1 className="mt-2 text-3xl font-semibold text-white">{discipline.name}</h1>
@@ -41,7 +41,7 @@ export default function AtividadesPage({ params }) {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6">
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
           <section className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-lg shadow-black/20">
             <div className="flex items-baseline justify-between gap-2">
               <h2 className="text-xl font-semibold text-white">Unidade 1</h2>

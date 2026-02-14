@@ -60,7 +60,7 @@ export default function VideoAulasPage({ params }) {
   return (
     <main className="min-h-screen bg-slate-950 py-16">
       <div className="mx-auto w-[90%] max-w-5xl">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Materiais · {label}</p>
             <h1 className="mt-2 text-3xl font-semibold text-white">{discipline.name}</h1>
@@ -86,13 +86,13 @@ export default function VideoAulasPage({ params }) {
                   <h2 className="text-xl font-semibold text-white">Unidade 1</h2>
                   <span className="text-xs uppercase tracking-[0.2em] text-slate-500">{label}</span>
                 </div>
-                <div className="mt-4 grid gap-4">
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   {videos.unidade1.map((item) => (
                     <article
                       key={item.url}
                       className="overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/60 shadow-lg shadow-black/30"
                     >
-                      <div className="aspect-video w-full bg-slate-900">
+                      <div className="aspect-video w-full max-h-[220px] bg-slate-900">
                         <iframe
                           title={item.title}
                           src={toEmbed(item.url)}
@@ -101,9 +101,16 @@ export default function VideoAulasPage({ params }) {
                           allowFullScreen
                         />
                       </div>
-                      <div className="px-4 py-3">
+                      <div className="flex items-center justify-between px-4 py-3 text-sm text-slate-200">
                         <p className="text-sm font-semibold text-white">{item.title}</p>
-                        <p className="text-xs text-slate-400">{item.url}</p>
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold text-sky-400 transition hover:text-sky-300"
+                        >
+                          Abrir
+                        </a>
                       </div>
                     </article>
                   ))}
@@ -117,13 +124,13 @@ export default function VideoAulasPage({ params }) {
                   <h2 className="text-xl font-semibold text-white">Unidade 2</h2>
                   <span className="text-xs uppercase tracking-[0.2em] text-slate-500">{label}</span>
                 </div>
-                <div className="mt-4 grid gap-4">
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   {videos.unidade2.map((item) => (
                     <article
                       key={item.url}
                       className="overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/60 shadow-lg shadow-black/30"
                     >
-                      <div className="aspect-video w-full bg-slate-900">
+                      <div className="aspect-video w-full max-h-[220px] bg-slate-900">
                         <iframe
                           title={item.title}
                           src={toEmbed(item.url)}
@@ -132,9 +139,16 @@ export default function VideoAulasPage({ params }) {
                           allowFullScreen
                         />
                       </div>
-                      <div className="px-4 py-3">
+                      <div className="flex items-center justify-between px-4 py-3 text-sm text-slate-200">
                         <p className="text-sm font-semibold text-white">{item.title}</p>
-                        <p className="text-xs text-slate-400">{item.url}</p>
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold text-sky-400 transition hover:text-sky-300"
+                        >
+                          Abrir
+                        </a>
                       </div>
                     </article>
                   ))}

@@ -80,7 +80,7 @@ export default function CronogramaDisciplina({ params }) {
     <main className="min-h-screen bg-slate-950 py-16">
       <div className="mx-auto w-[90%] max-w-5xl">
         <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Conteúdos do semestre</p>
               <h1 className="mt-2 text-3xl font-semibold text-white">{detail.title}</h1>
@@ -130,8 +130,8 @@ export default function CronogramaDisciplina({ params }) {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="wc-search flex-1" style={{ position: "static" }}>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="wc-search w-full sm:flex-1" style={{ position: "static" }}>
               <div className="wc-search-box">
                 <svg
                   className="wc-search-icon"
